@@ -15,3 +15,5 @@
 /sdk/
 /tmp/
 /toolchain/
+.envrc
+.direnv/
