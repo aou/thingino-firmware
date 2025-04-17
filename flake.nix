@@ -20,6 +20,7 @@
 	  dialog
           file
           gnumake
+	  libxcrypt
           ncurses.dev
 	  newt
           pkg-config
