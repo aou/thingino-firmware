@@ -13,21 +13,21 @@
   {
     devShells.${system}.default = (pkgs.buildFHSUserEnv {
       name = "buildroot";
-      targetPkgs = pkgs: (with pkgs;
-        [
-          (lib.hiPrio gcc)
-	  bash
-	  dialog
-          file
-          gnumake
-	  libxcrypt
-          ncurses.dev
-	  newt
-          pkg-config
-          unzip
-          wget
-          pkgsCross.aarch64-multiplatform.gccStdenv.cc
-        ] ++ pkgs.linux.nativeBuildInputs);
+      targetPkgs = pkgs: (with pkgs; [
+        (lib.hiPrio gcc)
+        bash
+        dialog
+        file
+        gnumake
+        libxcrypt
+        ncurses.dev
+        newt
+        pkg-config
+        ubootTools
+        unzip
+        wget
+        pkgsCross.aarch64-multiplatform.gccStdenv.cc
+      ] ++ pkgs.linux.nativeBuildInputs);
     }).env;
   };
 }
