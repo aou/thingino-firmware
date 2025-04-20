@@ -1,2 +1,4 @@
 # place your custom settings for local build here
 BR2_PACKAGE_THINGINO_TAILSCALE=y
+# BR2_PACKAGE_ZEROTIER_ONE=y
+# BR2_PACKAGE_NFTABLES=y
