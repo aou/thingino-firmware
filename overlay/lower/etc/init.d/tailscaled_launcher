@@ -1,0 +1,25 @@
+#!/bin/sh
+
+DAEMON=/usr/bin/tailscaled
+PIDFILE=/var/run/tailscaled.pid
+OPTS="-statedir /var/lib/tailscale"
+export TS_DEBUG_FIREWALL_MODE=nftables
+
+command="$DAEMON $OPTS"
+
+# trap 'echo exiting ; pkill -P $$' EXIT; until $command ; do
+#     echo "error, respawning..." >&2
+#     sleep 1
+# done
+
+CONTINUE=true
+
+trap 'echo exiting; trap " " SIGTERM; CONTINUE=false; kill 0; wait' SIGTERM
+
+while $CONTINUE; do
+    $command &
+    wait
+    echo "error, restarting..."
+    sleep 1
+done
+

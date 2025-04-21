@@ -1,0 +1,25 @@
+#!/bin/sh
+
+DAEMON=/etc/init.d/tailscaled_launcher
+PIDFILE=/var/run/tailscaled_launcher.pid
+
+test -x $DAEMON || exit 0
+
+case "$1" in
+  start)
+    echo "Starting Tailscaled via keepalive launcher"
+
+    start-stop-daemon -b -S -m -p $PIDFILE -x $DAEMON 2>&1
+
+    ;;
+  stop)
+    echo "Stopping Tailscaled"
+    start-stop-daemon -K -s SIGTERM -p $PIDFILE -- $OPTS && rm "$PIDFILE"
+    ;;
+  *)
+    echo "Usage: /etc/init.d/tailscaled {start|stop}"
+    exit 1
+    ;;
+esac
+exit 0
+
