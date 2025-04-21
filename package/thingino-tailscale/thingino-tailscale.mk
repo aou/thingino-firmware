@@ -19,8 +19,8 @@ define THINGINO_TAILSCALE_INSTALL_TARGET_CMDS
 	ln -sf tailscaled $(TARGET_DIR)/usr/bin/tailscale
 endef
 
-define TAILSCALE_LINUX_CONFIG_FIXUPS
-	$(call KCONFIG_ENABLE_OPT,CONFIG_TUN)
+define THINGINO_TAILSCALE_LINUX_CONFIG_FIXUPS
+	$(call KCONFIG_SET_OPT,CONFIG_TUN,m)
 endef
 
 $(eval $(golang-package))
